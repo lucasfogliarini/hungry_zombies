@@ -1,6 +1,8 @@
 import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
+import { BaseCollection } from '../base.js';
+
 //api
 class RestaurantsCollection extends BaseCollection {
   insert(name) {

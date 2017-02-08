@@ -1,5 +1,14 @@
 <template name="restaurants">
-  <form class="new-restaurant">
-  <input type="text" name="restaurant" placeholder="Type to add new restaurant" />
-</form>
+  <form class="add-restaurant">
+    <input type="text" name="restaurant" placeholder="Type to add new restaurant" />
+    <button type='submit'>add</button>
+  </form>
+  <ul style="list-style: none;">
+    {{#each restaurants}}
+      <li>
+        <span>{{name}}</span> |
+        <a class='remove-rest' href>remove</a>
+      </li>
+    {{/each}}
+  </ul>
 </template>

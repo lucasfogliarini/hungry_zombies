@@ -1,5 +1,15 @@
 <template name="developers">
-  <form class="new-dev">
-  <input type="text" name="dev" placeholder="Type to add new developer" />
-</form>
+  <form class="add-dev">
+    <input type="text" name="dev" placeholder="Type to add new developer" />
+    <button type='submit'>add</button>
+  </form>
+  <ul style="list-style: none;">
+    {{#each developers}}
+      <li>
+        <span>{{name}}</span> |
+        <a class='remove-dev' href>remove</a>
+      </li>
+    {{/each}}
+  </ul>
+
 </template>
