@@ -16,17 +16,17 @@ class BaseCollection extends Mongo.Collection {
 }
 
 class DevelopersCollection extends BaseCollection {
-
+  insert(name) {
+    return super.insert({
+      name: name,
+      createdAt: new Date(),
+    });
+  }
 }
-
-//schema
 export const Developers = new DevelopersCollection('developers');
 
+//schema
 Developers.schema = new SimpleSchema({
-  id: {
-    type: Number,
-    denyUpdate: true,
-  },
   name: {
     type: String,
   },

@@ -14,6 +14,12 @@ FlowRouter.route('/developers', {
   },
 });
 
+FlowRouter.route('/restaurants', {
+  action() {
+    BlazeLayout.render('main', { content: 'restaurants' });
+  },
+});
+
 FlowRouter.notFound = {
   action() {
     console.log('not found');

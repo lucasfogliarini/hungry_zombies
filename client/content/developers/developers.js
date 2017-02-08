@@ -5,11 +5,8 @@ import { Developers } from '/api/developers/';
 Template.developers.events({
   'submit .new-dev'(event) {
     event.preventDefault();
-    Developers.insert({
-      name: event.target.dev.value,
-      createdAt: new Date(),
-    });
-
-    target.dev.value = '';
+    const devIn = event.target.dev;
+    Developers.insert(devIn.value);
+    devIn.value = '';
   },
 });
