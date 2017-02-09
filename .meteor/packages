@@ -24,3 +24,6 @@ aldeed:simple-schema
 aldeed:collection2
 kadira:flow-router
 kadira:blaze-layout
+accounts-password
+accounts-ui
+accounts-facebook
