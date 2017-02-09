@@ -1,6 +1,7 @@
 <template name="poll">
   <h4>Restaurant Poll</h4>
-  <span class="today">{{today}}</span>
+  <e class="today">{{today}}</e>
+  <e class="votes_left">{{votes_left.length}} votes left</e>
   <table>
 	<thead>
 		<tr>
@@ -9,16 +10,17 @@
 		</tr>
 	</thead>
 	<tbody>
-    {{#each todayPoll}}
+    {{#each today_poll}}
   		<tr>
-  			<td>
+  			<td class="restaurant">
           {{restaurant_name}}
+          {{#if winner @index }}
+            <e>Wins!</e>
+          {{/if}}
         </td>
-  			<td title="{{voted_title}}">
+  			<td title="{{votes}}">
           <e class='votes'>{{votes.length}}</e>
-          <e class='votation'>
-            <e class='{{voted_class}}'>up</e>
-          </e>
+          <e class='votation {{voted_class}}'>vote</e>
         </td>
   		</tr>
     {{/each}}

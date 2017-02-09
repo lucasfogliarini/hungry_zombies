@@ -8,8 +8,8 @@ Template.poll.events({
 });
 
 Template.poll.helpers({
-  todayPoll: function(){
-   return Polls.todayPoll();
+  today_poll: function(){
+   return Polls.today_poll();
   },
   today: function(){
     return new Date().toDateString();
@@ -19,5 +19,11 @@ Template.poll.helpers({
   },
   voted_class: function(){
     return Polls.can_vote() ? 'vote' : 'hide';
+  },
+  votes_left: function(){
+    return Polls.votes_left();
+  },
+  winner: function(index) {
+    return index == 0 && Polls.votes_left().length == 0;
   }
 });

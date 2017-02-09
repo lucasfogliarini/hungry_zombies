@@ -25,10 +25,17 @@ thead th{
   left: 20px;
 }
 
-.votes{
-  cursor: pointer;
-  text-decoration: underline;
+.restaurant e{
+  color: red;
+  font-style: italic;
 }
+
 .today{
   font-size: 14px;
+}
+
+.votes_left{
+  font-size: 14px;
+  font-style: italic;
+  margin-left: 120px;
 }

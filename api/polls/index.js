@@ -16,26 +16,35 @@ class PollsCollection extends BaseCollection {
         });
       }
     }
-    can_vote() {
+    can_vote(username) {
       var self = this;
       var can_vote = false;
-      if (Meteor.userId()) {
+      if(!username)
+         username = Meteor.userId() ? Meteor.user().username : undefined;
+      if (username) {
         can_vote = true;
-        var username = Meteor.user().username;
         super.find().forEach(function(poll){
-          if(self.votedToday(poll) && poll.username == username)
+          if(self.voted_today(poll) && poll.username == username)
             can_vote = false;
         });
       }
       return can_vote;
     }
-    votedToday(poll){
+    voted_today(poll){
       return poll.createdAt.toDateString() == new Date().toDateString();
     }
-    todayPoll(){
+    votes_left(){
+      var self = this;
+      var users = Meteor.users.find().fetch();
+      return users.filter(function(user){
+         if(self.can_vote(user.username))
+            return user;
+      });
+    }
+    today_poll(){
       var self = this;
       return Restaurants.find().map(function(restaurant){
-         var votes = self.votesToday(restaurant);
+         var votes = self.votes_today(restaurant);
          return {
            restaurant_id: restaurant._id,
            restaurant_name: restaurant.name,
@@ -45,11 +54,11 @@ class PollsCollection extends BaseCollection {
          return x.votes.length < y.votes.length ? 1 : -1;
       });
     }
-    votesToday(restaurant){
+    votes_today(restaurant){
       var self = this;
       var votes = [];
       super.find().forEach(function(poll) {
-         if(poll.restaurant_id == restaurant._id && self.votedToday(poll))
+         if(poll.restaurant_id == restaurant._id && self.voted_today(poll))
             votes.push(poll.username);
       });
       return votes;
