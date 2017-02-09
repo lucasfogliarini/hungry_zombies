@@ -1,0 +1,11 @@
+<template name="poll">
+  <ul style="list-style: none; margin: 0">
+    {{#each todayPoll}}
+      <li>
+        <span>{{restaurant_name}}</span>
+         | <a class='vote' href>+</a>
+         | <a class='votes' href>{{votes}}</a>
+      </li>
+    {{/each}}
+  </ul>
+</template>

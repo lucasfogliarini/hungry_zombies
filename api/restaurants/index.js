@@ -2,6 +2,7 @@ import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
 import { BaseCollection } from '../base.js';
+import { Polls } from '/api/polls/';
 
 //api
 class RestaurantsCollection extends BaseCollection {
