@@ -5,12 +5,15 @@ Meteor.startup(() => {
 });
 
 function create_admin(){
-    var exists = Accounts.findUserByUsername('lucasfogliarini');
+    var exists = Accounts.findUserByUsername('facilitador');
     if(!exists){
       Accounts.createUser({
-        username: 'lucasfogliarini',
-        password: '12345',
+        username: 'facilitador',
+        password: '123456',
         profile: { admin: true }
+      });
+      Meteor.users.allow({
+        remove() { return true; },
       });
     }
 }
