@@ -7,8 +7,8 @@ import { Restaurants } from '/api/restaurants/';
 //api
 class PollsCollection extends BaseCollection {
     vote(username, restaurant_id) {
-      var voted = this.user_voted();
-      if(!voted){
+      var can_vote = this.can_vote();
+      if(can_vote){
         return super.insert({
           username: username,
           restaurant_id: restaurant_id,
@@ -16,15 +16,18 @@ class PollsCollection extends BaseCollection {
         });
       }
     }
-    user_voted() {
+    can_vote() {
       var self = this;
-      var voted = false;
-      var username = Meteor.user().username;
-      super.find().forEach(function(poll){
-        if(self.votedToday(poll) && poll.username == username)
-           voted = true;
-      });;
-      return voted;
+      var can_vote = false;
+      if (Meteor.userId()) {
+        can_vote = true;
+        var username = Meteor.user().username;
+        super.find().forEach(function(poll){
+          if(self.votedToday(poll) && poll.username == username)
+            can_vote = false;
+        });
+      }
+      return can_vote;
     }
     votedToday(poll){
       return poll.createdAt.toDateString() == new Date().toDateString();
@@ -38,13 +41,18 @@ class PollsCollection extends BaseCollection {
            restaurant_name: restaurant.name,
            votes: votes
          };
+      }).sort(function(x,y){
+         return x.votes.length < y.votes.length ? 1 : -1;
       });
     }
     votesToday(restaurant){
-      //console.log(super.find().fetch(),super.find({ restaurant_id: restaurant._id }).fetch(), restaurant._id);
-      return super.find({ restaurant_id: restaurant._id }).map(function(poll) {
-         if(votedToday(poll)) return poll.username;
+      var self = this;
+      var votes = [];
+      super.find().forEach(function(poll) {
+         if(poll.restaurant_id == restaurant._id && self.votedToday(poll))
+            votes.push(poll.username);
       });
+      return votes;
     }
 }
 export const Polls = new PollsCollection('polls');

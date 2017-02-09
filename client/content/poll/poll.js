@@ -15,9 +15,9 @@ Template.poll.helpers({
     return new Date().toDateString();
   },
   voted_title: function(){
-   return Polls.user_voted() ? 'already voted' : 'vote!';
+   return Polls.can_vote() ? 'already voted' : '';
   },
   voted_class: function(){
-   return Polls.user_voted() ? 'voted' : 'vote';
+    return Polls.can_vote() ? 'vote' : 'hide';
   }
 });

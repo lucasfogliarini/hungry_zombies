@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 
-UI.registerHelper("admin", function (param1, param2) {
+UI.registerHelper("admin", function () {
   var user = Meteor.user();
   if(user != undefined && user.profile != undefined)
     return user.profile.admin;

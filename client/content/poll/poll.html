@@ -5,7 +5,6 @@
 	<thead>
 		<tr>
 			<th>Restaurant</th>
-			<th>Vote!</th>
 			<th>Votes</th>
 		</tr>
 	</thead>
@@ -15,11 +14,11 @@
   			<td>
           {{restaurant_name}}
         </td>
-  			<td>
-          <b class='{{voted_class}}' title="{{voted_title}}">+</b>
-        </td>
-  			<td>
-          <span class='votes' href>{{votes.length}}</span>
+  			<td title="{{voted_title}}">
+          <e class='votes'>{{votes.length}}</e>
+          <e class='votation'>
+            <e class='{{voted_class}}'>up</e>
+          </e>
         </td>
   		</tr>
     {{/each}}

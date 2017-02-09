@@ -15,9 +15,14 @@ thead th{
 .vote{
   cursor: pointer;
   text-decoration: underline;
+  display: inline;
 }
-.voted{
-  cursor: not-allowed;
+.hide{
+  display: none;
+}
+.votation{
+  position: relative;
+  left: 20px;
 }
 
 .votes{
