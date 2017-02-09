@@ -19,6 +19,7 @@ export const Restaurants = new RestaurantsCollection('restaurants');
 Restaurants.schema = new SimpleSchema({
   name: {
     type: String,
+    unique: true
   },
   createdAt: {
     type: Date,

@@ -1,0 +1,29 @@
+table {
+  height: 80px;
+  width: 300px;
+  border: 1px solid;
+  border-collapse: collapse;
+  text-align: center;
+}
+tbody td{
+  border: 1px dotted;
+}
+thead th{
+  border: 1px solid;
+}
+
+.vote{
+  cursor: pointer;
+  text-decoration: underline;
+}
+.voted{
+  cursor: not-allowed;
+}
+
+.votes{
+  cursor: pointer;
+  text-decoration: underline;
+}
+.today{
+  font-size: 14px;
+}

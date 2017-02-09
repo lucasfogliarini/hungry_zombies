@@ -7,8 +7,8 @@ import { Restaurants } from '/api/restaurants/';
 //api
 class PollsCollection extends BaseCollection {
     vote(username, restaurant_id) {
-      var voted = voted(username, restaurant_id);
-      if(voted){
+      var voted = this.user_voted();
+      if(!voted){
         return super.insert({
           username: username,
           restaurant_id: restaurant_id,
@@ -16,10 +16,18 @@ class PollsCollection extends BaseCollection {
         });
       }
     }
-    voted(username, restaurant_id) {
-      var found = super.findOne({username: username, restaurant_id: restaurant_id});
-      console.log(found);
-      return found;
+    user_voted() {
+      var self = this;
+      var voted = false;
+      var username = Meteor.user().username;
+      super.find().forEach(function(poll){
+        if(self.votedToday(poll) && poll.username == username)
+           voted = true;
+      });;
+      return voted;
+    }
+    votedToday(poll){
+      return poll.createdAt.toDateString() == new Date().toDateString();
     }
     todayPoll(){
       var self = this;
@@ -33,9 +41,9 @@ class PollsCollection extends BaseCollection {
       });
     }
     votesToday(restaurant){
-      super.find({ restaurant_id: restaurant._id }).map(function(poll) {
-         var votedToday = poll.toDateString() == new Date().toDateString();
-         if(votedToday) return poll.username;
+      //console.log(super.find().fetch(),super.find({ restaurant_id: restaurant._id }).fetch(), restaurant._id);
+      return super.find({ restaurant_id: restaurant._id }).map(function(poll) {
+         if(votedToday(poll)) return poll.username;
       });
     }
 }
