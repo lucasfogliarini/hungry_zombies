@@ -1,29 +1,28 @@
 <template name="poll">
-  <h4>Restaurant Poll</h4>
   <e class="today">{{today}}</e>
   <e class="votes_left">{{votes_left.length}} votes left</e>
   <table>
-	<thead>
-		<tr>
-			<th>Restaurant</th>
-			<th>Votes</th>
-		</tr>
-	</thead>
-	<tbody>
-    {{#each today_poll}}
+  	<thead>
   		<tr>
-  			<td class="restaurant">
-          {{restaurant_name}}
-          {{#if winner @index }}
-            <e>Wins!</e>
-          {{/if}}
-        </td>
-  			<td title="{{votes}}">
-          <e class='votes'>{{votes.length}}</e>
-          <e class='votation {{voted_class}}'>vote</e>
-        </td>
+  			<th>Restaurant</th>
+  			<th>Votes</th>
   		</tr>
-    {{/each}}
-	</tbody>
-</table>
+  	</thead>
+  	<tbody>
+      {{#each today_poll}}
+    		<tr>
+    			<td class="restaurant">
+            {{restaurant_name}}
+            {{#if winner @index }}
+              <e>Wins!</e>
+            {{/if}}
+          </td>
+    			<td title="{{votes}}">
+            <e class='votes'>{{votes.length}}</e>
+            <e class='votation {{voted_class}}'>vote</e>
+          </td>
+    		</tr>
+      {{/each}}
+  	</tbody>
+  </table>
 </template>

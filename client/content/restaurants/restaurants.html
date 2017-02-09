@@ -1,18 +1,33 @@
 <template name="restaurants">
+  <table>
+  	<thead>
+  		<tr>
+  			<th>Restaurants</th>
+        {{#if admin}}
+  			<th>Remove</th>
+        {{/if}}
+  		</tr>
+  	</thead>
+  	<tbody>
+      {{#each restaurants}}
+    		<tr>
+    			<td>
+            {{name}}
+          </td>
+          {{#if admin}}
+    			<td>
+             <input value='-' type='button' class='remove-rest'/>
+          </td>
+          {{/if}}
+    		</tr>
+      {{/each}}
+  	</tbody>
+  </table>
+  <br />
   {{#if currentUser}}
     <form class="add-restaurant">
       <input type="text" name="restaurant" placeholder="Type to add new restaurant" />
-      <button type='submit'>add</button>
+      <button type='submit'>+</button>
     </form>
   {{/if}}
-  <ul style="list-style: none;">
-    {{#each restaurants}}
-      <li>
-        <span>{{name}}</span>
-        {{#if admin}}
-          | <a class='remove-rest' href>remove</a>
-        {{/if}}
-      </li>
-    {{/each}}
-  </ul>
 </template>

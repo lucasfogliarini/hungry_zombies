@@ -12,8 +12,5 @@ function create_admin(){
         password: '123456',
         profile: { admin: true }
       });
-      Meteor.users.allow({
-        remove() { return true; },
-      });
     }
 }

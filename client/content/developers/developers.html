@@ -1,12 +1,18 @@
 <template name="developers">
-  <ul style="list-style: none; margin: 0">
-    {{#each developers}}
-      <li>
-        <span>{{username}}</span>
-        {{#if admin}}
-         | <a class='remove-dev' href>remove</a>
-        {{/if}}
-      </li>
-    {{/each}}
-  </ul>
+  <table>
+  	<thead>
+  		<tr>
+  			<th>Developers</th>
+  		</tr>
+  	</thead>
+  	<tbody>
+      {{#each developers}}
+    		<tr>
+    			<td>
+            {{username}}
+          </td>
+    		</tr>
+      {{/each}}
+  	</tbody>
+  </table>
 </template>
