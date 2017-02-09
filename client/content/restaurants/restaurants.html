@@ -6,8 +6,10 @@
   <ul style="list-style: none;">
     {{#each restaurants}}
       <li>
-        <span>{{name}}</span> |
-        <a class='remove-rest' href>remove</a>
+        <span>{{name}}</span>
+        {{#if admin}}
+          | <a class='remove-rest' href>remove</a>
+        {{/if}}
       </li>
     {{/each}}
   </ul>

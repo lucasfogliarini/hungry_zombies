@@ -1,13 +1,11 @@
 <template name="developers">
-  <form class="add-dev">
-    <input type="text" name="dev" placeholder="Type to add new developer" />
-    <button type='submit'>add</button>
-  </form>
   <ul style="list-style: none;">
     {{#each developers}}
       <li>
-        <span>{{name}}</span> |
-        <a class='remove-dev' href>remove</a>
+        <span>{{username}}</span>
+        {{#if admin}}
+         | <a class='remove-dev' href>remove</a>
+        {{/if}}
       </li>
     {{/each}}
   </ul>
