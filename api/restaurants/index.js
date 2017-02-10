@@ -2,7 +2,7 @@ import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
 import { BaseCollection } from '../base.js';
-import { Polls } from '/api/polls/';
+import { Scores } from '/api/scores/';
 
 //api
 class RestaurantsCollection extends BaseCollection {
@@ -10,6 +10,12 @@ class RestaurantsCollection extends BaseCollection {
     return super.insert({
       name: name,
       createdAt: new Date(),
+    });
+  }
+  scores(){
+    return Restaurants.find().map(function(restaurant){
+       restaurant.wins = Scores.wins(restaurant._id);
+       return restaurant;
     });
   }
 }

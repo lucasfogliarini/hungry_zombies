@@ -8,8 +8,8 @@ Template.poll.events({
 });
 
 Template.poll.helpers({
-  today_poll: function(){
-   return Polls.today_poll();
+  poll_today: function(){
+   return Polls.poll_today();
   },
   today: function(){
     return new Date().toDateString();

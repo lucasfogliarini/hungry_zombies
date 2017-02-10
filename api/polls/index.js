@@ -3,17 +3,22 @@ import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
 import { BaseCollection } from '../base.js';
 import { Restaurants } from '/api/restaurants/';
+import { Scores } from '/api/scores/';
 
 //api
 class PollsCollection extends BaseCollection {
     vote(username, restaurant_id) {
       var can_vote = this.can_vote();
       if(can_vote){
-        return super.insert({
+        super.insert({
           username: username,
           restaurant_id: restaurant_id,
           createdAt: new Date(),
         });
+        if(this.votes_left().length == 0) {
+            var restaurant_id_winner = this.poll_today()[0].restaurant_id;
+            Scores.win(restaurant_id_winner);
+        }
       }
     }
     can_vote(username) {
@@ -41,18 +46,23 @@ class PollsCollection extends BaseCollection {
             return user;
       });
     }
-    today_poll(){
+    poll_today(){
       var self = this;
-      return Restaurants.find().map(function(restaurant){
+      var poll = [];
+      Restaurants.find().forEach(function(restaurant){
+         if(Scores.won_on(7, restaurant._id))
+            return;
          var votes = self.votes_today(restaurant);
-         return {
+         poll.push({
            restaurant_id: restaurant._id,
            restaurant_name: restaurant.name,
            votes: votes
-         };
-      }).sort(function(x,y){
+         });
+      })
+      poll.sort(function(x,y){
          return x.votes.length < y.votes.length ? 1 : -1;
       });
+      return poll;
     }
     votes_today(restaurant){
       var self = this;
