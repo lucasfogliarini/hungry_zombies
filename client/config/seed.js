@@ -1,10 +1,11 @@
 import { Accounts } from 'meteor/accounts-base'
+import { Restaurants } from '/api/restaurants/';
 
 Meteor.startup(() => {
-    create_users();
+    seed_users();
 });
 
-function create_users(){
+function seed_users(){
     //facilitador
     var exists = Accounts.findUserByUsername('facilitador');
     if(!exists){
@@ -39,32 +40,6 @@ function create_users(){
       Accounts.createUser({
         username: 'dev3',
         password: '123456'
-      });
-    }
-}
-
-function create_restaurants(){
-    //restaurant1
-    var exists = Accounts.findUserByUsername('restaurant1');
-    if(!exists){
-      Accounts.createUser({
-        name: 'restaurant1',
-      });
-    }
-
-    //restaurant2
-    var exists = Accounts.findUserByUsername('restaurant2');
-    if(!exists){
-      Accounts.createUser({
-        name: 'restaurant2'
-      });
-    }
-
-    //restaurant3
-    var exists = Accounts.findUserByUsername('restaurant3');
-    if(!exists){
-      Accounts.createUser({
-        name: 'restaurant3'
       });
     }
 }
