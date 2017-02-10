@@ -14,7 +14,7 @@ Template.restaurants.events({
   }
 });
 Template.restaurants.helpers({
-  restaurants: function(){
-   return Restaurants.scores();
+  restaurants(){
+    return Restaurants.scores();
   }
 });

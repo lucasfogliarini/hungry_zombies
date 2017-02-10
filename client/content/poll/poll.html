@@ -1,6 +1,14 @@
 <template name="poll">
-  <e class="today">{{today}}</e>
+  <div>
+    Finish on
+    <input id='hour' type='number' max='23' min='0' value='11' class='{{admin f='disable'}}' />
+    :
+    <input id='min' type='number' max='59' min='0' value='59' class='{{admin f='disable'}}' />
+  </div>
+  <br />
   <e class="votes_left">{{votes_left.length}} votes left</e>
+  <b>{{time}}</b>
+  <e class="today">{{today}}</e>
   <table>
   	<thead>
   		<tr>
@@ -13,8 +21,8 @@
     		<tr>
     			<td class="restaurant">
             {{restaurant_name}}
-            {{#if winner @index }}
-              <e>Wins!</e>
+            {{#if winner }}
+              <e class='finished'>Wins!</e>
             {{/if}}
           </td>
     			<td title="{{votes}}">

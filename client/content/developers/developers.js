@@ -7,7 +7,7 @@ Template.developers.events({
 });
 
 Template.developers.helpers({
-  developers: function(){
+  developers(){
    return Meteor.users.find();
   }
 });

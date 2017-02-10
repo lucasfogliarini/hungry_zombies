@@ -16,10 +16,27 @@ class PollsCollection extends BaseCollection {
           createdAt: new Date(),
         });
         if(this.votes_left().length == 0) {
-            var restaurant_id_winner = this.poll_today()[0].restaurant_id;
-            Scores.win(restaurant_id_winner);
+          this.finish();
         }
       }
+    }
+    today_winner(){
+        var today = new Date();
+        today.setHours(0);
+        today.setMinutes(0);
+        return Scores.findOne({ createdAt: { "$gte" : today } });
+    }
+    check_time(hour, min){
+      if(!this.today_winner()){
+        var time_now = new Date().toISOString().substr(11, 6);
+        if(time_now >= hour + ":" + min) {
+          this.finish();
+        }
+      }
+    }
+    finish(){
+        var restaurant_id_winner = this.poll_today()[0].restaurant_id;
+        Scores.win(restaurant_id_winner);
     }
     can_vote(username) {
       var self = this;

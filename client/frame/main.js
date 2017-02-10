@@ -1,12 +1,18 @@
 import { Meteor } from 'meteor/meteor';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 
-UI.registerHelper("admin", function () {
+UI.registerHelper("admin", function (params) {
   var user = Meteor.user();
+  var isAdmin = false;
   if(user != undefined && user.profile != undefined)
-    return user.profile.admin;
+    isAdmin = user.profile.admin;
+
+  if (params) {
+    return isAdmin ? getHash(params, 't') : getHash(params, 'f');
+  }
+  return isAdmin;
 });
 
-UI.registerHelper("route_path", function () {
-  return FlowRouter.getRouteName();
-});
+function getHash(params, hash) {
+    return params ? params.hash[hash] : undefined;
+}
