@@ -1,5 +1,4 @@
 import { Accounts } from 'meteor/accounts-base'
-import { Restaurants } from '/api/restaurants/';
 
 Meteor.startup(() => {
     seed_users();
