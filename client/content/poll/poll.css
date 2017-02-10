@@ -12,6 +12,10 @@ thead th{
   border: 1px solid;
 }
 
+.help{
+  cursor: help;
+}
+
 .vote{
   cursor: pointer;
   text-decoration: underline;

@@ -1,9 +1,11 @@
 <template name="poll">
   <div>
     Finish on
-    <input id='hour' type='number' max='23' min='0' value='11' class='{{admin f='disable'}}' />
+    <input id='hour' type='number' max='23' min='0' value='23' class='{{admin f='disable'}}' />
     :
     <input id='min' type='number' max='59' min='0' value='59' class='{{admin f='disable'}}' />
+
+    <b class='help' title="Setup poll endtime. i.e. 11:59 (admin only)">?</b>
   </div>
   <br />
   <e class="votes_left">{{votes_left.length}} votes left</e>
