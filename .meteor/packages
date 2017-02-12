@@ -28,3 +28,4 @@ accounts-ui@1.1.9
 dburles:factory
 practicalmeteor:mocha
 dispatch:mocha
+autopublish
