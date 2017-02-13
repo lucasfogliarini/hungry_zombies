@@ -13,6 +13,10 @@ UI.registerHelper("admin", function (params) {
   return isAdmin;
 });
 
+UI.registerHelper("iif", function (params) {
+  return getHash(params, 'c') ? getHash(params, 't') : getHash(params, 'f');
+});
+
 function getHash(params, hash) {
     return params ? params.hash[hash] : undefined;
 }

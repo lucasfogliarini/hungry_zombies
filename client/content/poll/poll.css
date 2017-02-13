@@ -33,6 +33,13 @@ thead th{
   pointer-events:none;
   color: gray;
 }
+.timer {
+  width: 35px;
+}
+
+.reset {
+  margin-left: 65px;
+}
 
 .finished{
   color: red;
