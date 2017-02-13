@@ -18,6 +18,7 @@ running on [http://localhost:3000](http://localhost:3000)
  - Add restaurants
  - Remove restaurants  __admin__
  - Setup poll endtime  __admin__
+ - Reset today's poll  __admin__
 
 ### Users and passwords
 |  username   | password  | admin   |

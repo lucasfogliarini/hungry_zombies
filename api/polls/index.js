@@ -63,6 +63,17 @@ class PollsCollection extends BaseCollection {
             return user;
       });
     }
+    reset_poll_today(){
+      var today = new Date();
+      today.setHours(0);
+      today.setMinutes(0);
+      var polls = this.find().fetch({ createdAt: { "$gte" : today } });
+      for (var i = 0; i < polls.length; i++) {
+        Polls.remove(polls[i]._id);
+      }
+      var score_today = Scores.findOne({ createdAt: { "$gte" : today } });
+      Scores.remove(score_today._id);
+    }
     poll_today(){
       var self = this;
       var poll = [];

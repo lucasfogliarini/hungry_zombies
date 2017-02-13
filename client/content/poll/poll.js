@@ -8,6 +8,9 @@ Template.poll.onCreated(function () {
 Template.poll.events({
   'click .vote'() {
      Polls.vote(Meteor.user().username, this.restaurant_id);
+  },
+  'click .reset'() {
+     Polls.reset_poll_today();
   }
 });
 
@@ -19,7 +22,14 @@ Template.poll.helpers({
    return Polls.poll_today();
   },
   today(){
-    return new Date().toDateString();
+    var now = new Date();
+    var mm = now.getMonth() + 1; // getMonth() is zero-based
+    var dd = now.getDate();
+
+    return [(dd>9 ? '' : '0') + dd,
+            (mm>9 ? '' : '0') + mm,
+            now.getFullYear()
+           ].join('/');
   },
   voted_class(){
     return Polls.can_vote() && !Polls.today_winner() ? 'vote' : 'hide';
@@ -27,8 +37,11 @@ Template.poll.helpers({
   votes_left(){
     return Polls.votes_left();
   },
-  winner(){
+  is_winner(){
     return Polls.today_winner().restaurant_id == this.restaurant_id;
+  },
+  today_winner(){
+    return Polls.today_winner();
   }
 });
 

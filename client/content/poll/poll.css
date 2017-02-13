@@ -31,6 +31,7 @@ thead th{
 
 .disable{
   pointer-events:none;
+  color: gray;
 }
 
 .finished{
@@ -46,5 +47,5 @@ thead th{
 .votes_left{
   font-size: 14px;
   font-style: italic;
-  margin-right: 60px;
+  margin-right: 90px;
 }
